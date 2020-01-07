@@ -3,9 +3,10 @@ import Vector from './vector.js'
 import Ray from './ray.js'
 
 class Sphere {
-    constructor(center, r, material) {
+    constructor(center, r, color, material) {
         this.center = center
         this.r = r
+        this.color = color
         this.material = material
     }
     hit(ray, tMin=0, tMax=Infinity) {
@@ -22,6 +23,7 @@ class Sphere {
                 hitHistory.point = ray.line(t)
                 hitHistory.normal = hitHistory.point.minus(this.center).divide(this.r)
                 hitHistory.material = this.material
+                hitHistory.color = this.color
                 return hitHistory
             }
             t = (-b + Math.sqrt(delta)) / a
@@ -30,6 +32,7 @@ class Sphere {
                 hitHistory.point = ray.line(t)
                 hitHistory.normal = hitHistory.point.minus(this.center).divide(this.r)
                 hitHistory.material = this.material
+                hitHistory.color = this.color
                 return hitHistory
             }
         }

@@ -43,16 +43,25 @@ class Vector {
         }
         return new Vector(x, y, z)
     }
-    dot(v) {
-        return this.x * v.x + this.y * v.y + this.z * v.z
-    }
     length() {
         return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z)
     }
     getValue() {
         return [this.x, this.y, this.z]
     }
+    static dot(v1, v2) {
+        return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
+    }
+    static normalize(v) {
+        return v.divide(v.length())
+    }
+    static cross(v1, v2) {
+        // 计算叉积
+        const x = v1.y*v2.z - v1.z*v2.y
+        const y = v1.z*v2.x  - v1.x*v2.z
+        const z = v1.x*v2.y - v1.y*v2.x
+        return new Vector(x, y, z)
+    }
 }
 
 module.exports = Vector
-
